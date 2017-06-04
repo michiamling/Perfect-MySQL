@@ -426,6 +426,11 @@ public final class MySQL {
 		}
 		return b
 	}
+    
+    public var ping: Bool {
+        
+        return mysql_ping(self.ptr!) == 0
+    }
 	
     /// Class used to manage and interact with result sets
 	public final class Results: IteratorProtocol {
