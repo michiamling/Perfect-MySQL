@@ -1,9 +1,9 @@
-// swift-tools-version:5.2
+// swift-tools-version:4.0
 //  Package.swift
 //  Perfect-MySQL
 //
 //  Created by Kyle Jessup on 3/22/16.
-//	Copyright (C) 2016 PerfectlySoft, Inc.
+//    Copyright (C) 2016 PerfectlySoft, Inc.
 //
 //===----------------------------------------------------------------------===//
 //
@@ -18,34 +18,24 @@
 //
 
 import PackageDescription
+
 #if os(macOS)
-let package = Package(
-	name: "PerfectMySQL",
-	products: [
-		.library(name: "PerfectMySQL", targets: ["PerfectMySQL"])
-	],
-	dependencies: [
-        .package(name: "PerfectCRUD", url: "https://github.com/PerfectlySoft/Perfect-CRUD.git", from: "1.2.2"),
-        .package(url: "https://github.com/michiamling/Perfect-mysqlclient.git", from: "2.0.0")
-		],
-	targets: [
-		.target(name: "PerfectMySQL", dependencies: ["PerfectCRUD"]),
-		.testTarget(name: "PerfectMySQLTests", dependencies: ["PerfectMySQL"])
-	]
-)
+let clientPackage = "Perfect-mysqlclient"
 #else
+let clientPackage = "Perfect-mysqlclient-Linux"
+#endif
+
 let package = Package(
     name: "PerfectMySQL",
     products: [
         .library(name: "PerfectMySQL", targets: ["PerfectMySQL"])
     ],
     dependencies: [
-        .package(name: "PerfectCRUD", url: "https://github.com/PerfectlySoft/Perfect-CRUD.git", from: "1.2.2"),
-        .package(url: "https://github.com/michiamling/Perfect-mysqlclient-Linux.git", from: "2.0.0")
+        .package(url: "https://github.com/PerfectlySoft/Perfect-CRUD.git", from: "1.2.2"),
+        .package(url: "https://github.com/michiamling/\(clientPackage).git", from: "2.0.0")
         ],
     targets: [
         .target(name: "PerfectMySQL", dependencies: ["PerfectCRUD"]),
         .testTarget(name: "PerfectMySQLTests", dependencies: ["PerfectMySQL"])
     ]
 )
-#endif
