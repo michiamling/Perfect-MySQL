@@ -1,3 +1,5 @@
+// swift-tools-version:5.2
+
 //
 //  Package.swift
 //  Perfect-MySQL
@@ -17,24 +19,24 @@
 //===----------------------------------------------------------------------===//
 //
 
+
+
 import PackageDescription
 
 #if os(OSX)
 let package = Package(
     name: "MySQL",
-    targets: [],
     dependencies: [
-                      .Package(url: "https://github.com/PerfectlySoft/Perfect-mysqlclient.git", majorVersion: 2, minor: 0)
+        .package(url: "https://github.com/PerfectlySoft/Perfect-mysqlclient.git", from: "2.0.0"),
     ],
-    exclude: []
+    targets: []
 )
 #else
 let package = Package(
     name: "MySQL",
-    targets: [],
     dependencies: [
-                      .Package(url: "https://github.com/PerfectlySoft/Perfect-mysqlclient-Linux.git", majorVersion: 2, minor: 0)
+        .package(url: "https://github.com/PerfectlySoft/Perfect-mysqlclient-Linux.git",  from: "2.0.0"),
     ],
-    exclude: []
+    targets: []
 )
 #endif
